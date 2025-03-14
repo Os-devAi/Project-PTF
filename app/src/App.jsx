@@ -7,7 +7,7 @@ import ProjectComponent from './components/ProjectComponent';
 function App() {
   const [proyectos, setProyects] = useState([]);
 
-  // mostrar los productos
+  // mostrar los proyectos
   useEffect(() => {
     const getProyects = async () => {
       try {

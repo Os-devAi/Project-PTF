@@ -1,35 +1,18 @@
 import React from 'react'
+import './ProjectComponent.css'
 
 const ProjectComponent = ({ proyectos }) => {
     return (
         <>
-            <span className="titulodeproyecto">
-                {proyectos.nombre}
-            </span>
-            <div className="contenedorproyecto">
-                <div className="contenedorimagen">
+            <div className="proyect-content">
+                <div className="proyect-img">
                     <img src={proyectos.imagen} alt={proyectos.nombre} />
                 </div>
-                <div className="contenedorinformacion">
-                    <span className="tituloinformacion">
-                        Descripción
-                    </span>
-                    <br />
-                    <span className="descripcion">
-                        {proyectos.descripcion}
-                    </span>
-                    <br />
-                    <span className="descripcion">
-                        {proyectos.descripcion}
-                    </span>
-                    <br />
-                    <span className="tituloinformacion">
-                        Tecnologías
-                    </span>
-                    <br />
-                    <span className="descripcion">
-                        {proyectos.tech}
-                    </span>
+                <div className="proyect-info">
+                    <h3>{proyectos.nombre}</h3>
+                    <p>{proyectos.descripcion}</p>
+                    <p>{proyectos.tech}</p>
+                    <a href={proyectos.link} target="_blank" rel="noreferrer">Ver proyecto</a>
                 </div>
             </div>
         </>
