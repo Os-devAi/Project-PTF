@@ -35,7 +35,7 @@ function App() {
           <br />
           <span class="led led-green">
           </span>
-          <span>Abierto para trabajo remoto y freelance.</span>
+          <span>Interesado en colaborar en proyectos freelance de forma remota.</span>
           <h2>Información de contacto</h2>
           <div className="contact-info">
             <span>Ciudad de Guatemala, Guatemala</span>
