@@ -10,9 +10,15 @@ const ProjectComponent = ({ proyectos }) => {
                 </div>
                 <div className="proyect-info">
                     <h3>{proyectos.nombre}</h3>
-                    <p>{proyectos.descripcion}</p>
+                    <p style={{ whiteSpace: 'pre-line' }}>{proyectos.descripcion}</p>
                     <p>{proyectos.tech}</p>
-                    <a href={proyectos.link} target="_blank" rel="noreferrer">Ver proyecto</a>
+                    {proyectos.link ? (
+                        <a href={proyectos.link} target="_blank" rel="noreferrer">
+                            <b>Ver proyecto</b>
+                        </a>
+                    ) : (
+                        <span><b>Demo no disponible de momento</b></span>
+                    )}
                 </div>
             </div>
         </>
