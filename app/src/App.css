@@ -41,6 +41,21 @@
   font-size: 14px;
 }
 
+.led {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  background-color: #4CAF50; /* Verde base */
+  box-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50;
+}
+
+.led-green {
+  background-color: #4CAF50;
+  box-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50;
+}
+
 .social-container {
   display: flex;
   flex-wrap: wrap;

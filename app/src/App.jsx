@@ -1,7 +1,7 @@
 import './App.css'
 import React, { useEffect, useState } from 'react'
 import { db } from "./config/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import ProjectComponent from './components/ProjectComponent';
 
 function App() {
@@ -11,14 +11,15 @@ function App() {
   useEffect(() => {
     const getProyects = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "proyectos"));
+        const q = query(collection(db, "proyectos"), orderBy("nombre", "asc")); // 👈 aquí se ordena
+        const querySnapshot = await getDocs(q);
         const proyectosArray = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
         setProyects(proyectosArray);
       } catch (error) {
-        console.error(error);
+        console.error("Error al obtener proyectos:", error);
       }
     };
     getProyects();
@@ -30,6 +31,11 @@ function App() {
         <div className='profile-container'>
           <img className='profile-picture' src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D" alt="fotoxdxd" height={48} width={48} />
           <h1 className='dev-title'>Osbaldo Martínez</h1>
+          <span className='dev-title'>Registro del Mercado de Valores y Mercancías.</span>
+          <br />
+          <span class="led led-green">
+          </span>
+          <span>Abierto para trabajo remoto y freelance.</span>
           <h2>Información de contacto</h2>
           <div className="contact-info">
             <span>Ciudad de Guatemala, Guatemala</span>
@@ -38,29 +44,35 @@ function App() {
             <br />
             <span>Tel: +502 3659-8473</span>
           </div>
+          <p>Muy emocionado por poder trabajar en nuevos proyectos y colaborar con otros profesionales.</p>
           <h2>Redes Sociales</h2>
           <div className="social-container">
             <a href="https://github.com/Os-devAi">
-              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="github-icon" height={48} width={48} />
+              <img src="https://img.icons8.com/?size=100&id=12599&format=png&color=FFFFFF" alt="github-icon" height={48} width={48} />
             </a>
             <a href="https://play.google.com/store/apps/developer?id=Nexus.Dev">
-              <img src="https://cdn-icons-png.flaticon.com/512/732/732065.png" alt="playstore-icon" height={48} width={48} />
+              <img src="https://img.icons8.com/?size=100&id=sDtU582wAEWd&format=png&color=FFFFFF" alt="playstore-icon" height={48} width={48} />
             </a>
             <a href="https://www.facebook.com/def.alt.00101/">
-              <img src="https://cdn-icons-png.flaticon.com/512/20/20673.png" alt="facebook-icon" height={48} width={48} />
+              <img src="https://img.icons8.com/?size=100&id=118467&format=png&color=FFFFFF" alt="facebook-icon" height={48} width={48} />
             </a>
             <a href="https://www.instagram.com/osvaldo_ez/">
-              <img src="https://cdn-icons-png.flaticon.com/512/87/87390.png" alt="instagram-icon" height={48} width={48} />
+              <img src="https://img.icons8.com/?size=100&id=32309&format=png&color=FFFFFF" alt="instagram-icon" height={48} width={48} />
             </a>
             <a href="https://x.com/os_devAi">
-              <img src="https://cdn-icons-png.flaticon.com/512/6372/6372150.png" alt="x-icon" height={48} width={48} />
+              <img src="https://img.icons8.com/?size=100&id=01GWmP9aUoPj&format=png&color=FFFFFF" alt="x-icon" height={48} width={48} />
             </a>
             <a href="https">
-              <img src="https://cdn-icons-png.freepik.com/256/254/254394.png?semt=ais_hybrid" alt="linkedin-icon" height={48} width={48} />
+              <img src="https://img.icons8.com/?size=100&id=8808&format=png&color=FFFFFF" alt="linkedin-icon" height={48} width={48} />
             </a>
           </div>
-          <button className='contact-me'>
-            Contact Me
+          <button className='contact-me' href="#projects" onClick={() => {
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+              projectsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}>            
+            ver proyectos
           </button>
         </div>
         <div className='skills-container'>
@@ -142,10 +154,34 @@ function App() {
                 <div className='skill-bar-fill' style={{ width: '80%' }}></div>
               </div>
             </div>
+            {/* tercera columna */}
+            <div className='skill'>
+              <h2 className='sub-title'>Otras</h2>
+              <h3>Integraciones</h3>
+              <div className='skill-bar'>
+                <div className='skill-bar-fill' style={{ width: '80%' }}></div>
+              </div>
+              <h3>Git/GitHub</h3>
+              <div className='skill-bar'>
+                <div className='skill-bar-fill' style={{ width: '80%' }}></div>
+              </div>
+              <h3>Manejo de Google Play Console y App Store Connect</h3>
+              <div className='skill-bar'>
+                <div className='skill-bar-fill' style={{ width: '80%' }}></div>
+              </div>
+              <h3>Despliegue en Vercel</h3>
+              <div className='skill-bar'>
+                <div className='skill-bar-fill' style={{ width: '80%' }}></div>
+              </div>
+              <h3>Inglés Básico / lectura y escritura documentación.</h3>
+              <div className='skill-bar'>
+                <div className='skill-bar-fill' style={{ width: '80%' }}></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div className='project-container'>
+      <div className='project-container' id='projects'>
         <h2>Proyectos</h2>
         {proyectos.map((proyectos) => (
           <ProjectComponent key={proyectos.id} proyectos={proyectos} />
