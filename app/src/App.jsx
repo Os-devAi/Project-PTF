@@ -29,7 +29,7 @@ function App() {
     <>
       <div className='main-container'>
         <div className='profile-container'>
-          <img className='profile-picture' src="https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D" alt="fotoxdxd" height={48} width={48} />
+          <img className='profile-picture' src="https://ik.imagekit.io/nhu6ngxhk/PortafolioImagenes/WhatsApp%20Image%202025-10-01%20at%2008.26.25.jpeg?updatedAt=1759328849905" alt="fotoxdxd" height={48} width={48} />
           <h1 className='dev-title'>Osbaldo Martínez</h1>
           <span className='dev-title'>Registro del Mercado de Valores y Mercancías.</span>
           <br />
@@ -71,7 +71,7 @@ function App() {
             if (projectsSection) {
               projectsSection.scrollIntoView({ behavior: 'smooth' });
             }
-          }}>            
+          }}>
             ver proyectos
           </button>
         </div>
