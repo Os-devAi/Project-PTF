@@ -1,186 +1,322 @@
 #root {
-  max-width: 1280px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 2rem;
 }
 
+/* ---------- Contenedor principal ---------- */
 .main-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  gap: 40px;
 }
 
-/* --------- Profile Container --------- */
-.profile-container {
-  flex: 1 1 300px;
-  border: 1px solid #e6e6e6;
-  border-radius: 15px;
-  padding: 16px 24px;
-  min-width: 280px;
-  box-sizing: border-box;
+.project-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px;
 }
 
-.profile-container .profile-picture {
-  display: block;
+/* ---------- Header ---------- */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #333;
+}
+
+.profile-picture-section {
+  flex-shrink: 0;
+}
+
+.profile-picture {
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  margin: auto;
   object-fit: cover;
+  border: 2px solid #888;
 }
 
-.profile-container .dev-title {
-  display: block;
-  margin: 16px auto 8px;
-  text-align: center;
-  width: 100%;
+.profile-info-section {
+  flex: 1;
 }
 
-.contact-info {
-  margin-bottom: 16px;
-  font-size: 14px;
-}
-
-.led {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  margin-right: 8px;
-  background-color: #4CAF50; /* Verde base */
-  box-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50;
-}
-
-.led-green {
-  background-color: #4CAF50;
-  box-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50;
-}
-
-.social-container {
+.profile-header-top {
   display: flex;
+  align-items: center;
+  gap: 16px;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 10px;
 }
 
-.social-container img {
-  width: 32px;
-  height: 32px;
+.profile-name {
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
-.contact-me {
-  width: 100%;
-  margin-top: 16px;
-  background-color: #f2f2f2;
-  color: #212121;
+.show-projects {
+  background-color: #1877f2;
+  color: #fff;
   border: none;
-  border-radius: 15px;
-  height: 48px;
+  border-radius: 8px;
+  padding: 8px 16px;
   cursor: pointer;
-  transition: background 0.3s;
+  font-weight: 500;
+  transition: 0.3s;
 }
 
-.contact-me:hover {
-  background-color: #e0e0e0;
+.show-projects:hover {
+  background-color: #145dbf;
 }
 
-/* --------- Skills Container --------- */
-.skills-container {
-  flex: 2 1 500px;
-  padding: 16px 24px;
-  box-sizing: border-box;
+.profile-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 12px;
+  font-size: 1rem;
 }
 
-.about-container h1 {
-  font-size: 24px;
-  margin: 8px 0;
+.work-icon {
+  height: 32px;
+  width: 32px;
+  margin-left: -5px;
 }
 
-.about-container p {
-  text-align: justify;
-  font-size: 14px;
-  line-height: 1.6;
+.profile-job {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #ccc;
 }
 
-.title-skills-container {
-  text-align: center;
-  margin: 24px 0 16px;
+.profile-bio {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ---------- Highlights (Historias / Redes Sociales) ---------- */
+.highlights-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid #333;
+  flex-wrap: wrap;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.highlight img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  padding: 10px;
+  background: #222;
+  border: 2px solid #444;
+  transition: transform 0.3s ease;
+}
+
+.social-icon {
+  border-radius: 50%;
+}
+
+.highlight img:hover {
+  transform: scale(1.1);
+}
+
+.highlight span {
+  font-size: 0.85rem;
+}
+
+/* ---------- Sección de habilidades ---------- */
+.profile-content {
+  padding-top: 24px;
+}
+
+.profile-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #333;
+  display: inline-block;
 }
 
 .skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
-}
-
-.sub-title {
-  margin-bottom: 12px;
-  text-decoration: underline;
-}
-
-.skill {
-  flex: 1 1 250px;
-  min-width: 200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
 }
 
 .skill h3 {
-  margin: 8px 0 4px;
-  font-size: 14px;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
 }
 
-/* .skill-bar {
-  background-color: #e0e0e0;
-  height: 10px;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 12px;
+.skill p {
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.4;
 }
 
-.skill-bar-fill {
-  background-color: #4CAF50;
-  height: 100%;
-  transition: width 0.5s ease-in-out;
-} */
 
-/* --------- Responsive Breakpoints --------- */
+.footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  text-align: center;
+  color: #666;
+}
+
+/* ---------- Responsivo ---------- */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 992px) {
+  .profile-header {
+    gap: 32px;
+  }
+
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile-name {
+    font-size: 1.6rem;
+  }
+
+  .profile-stats {
+    gap: 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Móviles (modo Instagram) */
 @media (max-width: 768px) {
-  .main-container {
+  .profile-header {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .profile-container,
-  .skills-container {
+  .profile-picture {
+    width: 130px;
+    height: 130px;
+  }
+
+  .profile-header-top {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .profile-stats {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .profile-job {
+    justify-content: center;
+  }
+
+  .profile-bio {
+    text-align: center;
+  }
+
+  .highlights-container {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 16px 0;
+    scrollbar-width: none;
+    /* Oculta scroll en Firefox */
+  }
+
+  .highlights-container::-webkit-scrollbar {
+    display: none;
+    /* Oculta scroll en Chrome */
+  }
+
+  .skills-list {
+    grid-template-columns: 1fr;
+  }
+
+  .show-projects {
     width: 100%;
-    margin: 0;
   }
+}
 
-  .social-container {
+/* En pantallas pequeñas (modo móvil) */
+@media (max-width: 600px) {
+  .highlights-container {
+    flex-direction: row;
+    /* se alinean horizontalmente */
     justify-content: space-around;
   }
 
-  .skill {
-    flex: 1 1 100%;
+  .highlight {
+    flex: 1;
+    align-items: center;
+  }
+
+  .social-icon {
+    width: 35px;
+    height: 35px;
   }
 }
 
+/* Móviles pequeños */
 @media (max-width: 480px) {
-  .profile-container .profile-picture {
+  .profile-picture {
     width: 100px;
     height: 100px;
   }
 
-  .social-container img {
-    width: 28px;
-    height: 28px;
+  .profile-name {
+    font-size: 1.4rem;
   }
 
-  .about-container h1 {
-    font-size: 20px;
+  .profile-stats span {
+    font-size: 0.85rem;
   }
 
-  .about-container p {
-    font-size: 13px;
+  .highlight img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .highlight span {
+    font-size: 0.75rem;
+  }
+
+  .profile-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .highlights-container {
+    flex-direction: row;
+    /* se alinean horizontalmente */
+    justify-content: space-around;
+  }
+
+  .highlight {
+    flex: 1;
+    align-items: center;
+  }
+
+  .social-icon {
+    width: 35px;
+    height: 35px;
   }
 }
