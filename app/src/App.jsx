@@ -7,6 +7,8 @@ import ProjectComponent from './components/ProjectComponent';
 function App() {
   const [proyectos, setProyects] = useState([]);
 
+  const emailAddress = "osbaldoez@hotmail.com";
+
   // mostrar los proyectos
   useEffect(() => {
     const getProyects = async () => {
@@ -67,10 +69,15 @@ function App() {
               /> */}
               <span>Trabajando en: Registro del Mercado de Valores y Mercancías</span>
             </div>
-
             <p className="profile-bio">
               Desarrollador móvil nativo enfocado en crear experiencias modernas con Android (Jetpack Compose), iOS (SwiftUI) además cuento con experiencia en desarrollo web con React.js y Node.js.
             </p>
+            <br />
+            <span>Contacto: 🔗 <a
+              href={`mailto:${emailAddress}`}
+              className='email'
+              title={`Enviar correo a ${emailAddress}`}
+            ><span className='email'><b>osbaldoez@hotmail.com</b></span></a></span>
           </div>
         </div>
 
