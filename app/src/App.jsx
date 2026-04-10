@@ -6,14 +6,12 @@ import ProjectComponent from './components/ProjectComponent';
 
 function App() {
   const [proyectos, setProyects] = useState([]);
-
   const emailAddress = "osbaldoez@hotmail.com";
 
-  // mostrar los proyectos
   useEffect(() => {
     const getProyects = async () => {
       try {
-        const q = query(collection(db, "proyectos"), orderBy("nombre", "asc")); // 👈 aquí se ordena
+        const q = query(collection(db, "proyectos"), orderBy("nombre", "asc"));
         const querySnapshot = await getDocs(q);
         const proyectosArray = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -27,107 +25,145 @@ function App() {
     getProyects();
   }, []);
 
+  const scrollTo = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <>
-      <div className="main-container">
-        <div className="profile-header">
-          <div className="profile-picture-section">
-            <img
-              className="profile-picture"
-              src="https://ik.imagekit.io/nhu6ngxhk/PortafolioImagenes/WhatsApp%20Image%202025-10-01%20at%2008.26.25.jpeg?updatedAt=1759328849905"
-              alt="perfil"
-            />
+    <div className="app-wrapper">
+      {/* Floating Navbar */}
+      <nav className="navbar">
+        <div className="nav-content">
+          <span className="nav-logo">OM</span>
+          <div className="nav-links">
+            <button onClick={() => scrollTo('hero')}>Inicio</button>
+            <button onClick={() => scrollTo('skills')}>Habilidades</button>
+            <button onClick={() => scrollTo('projects')}>Proyectos</button>
           </div>
+        </div>
+      </nav>
 
-          <div className="profile-info-section">
-            <div className="profile-header-top">
-              <h1 className="profile-name">Osbaldo Martínez</h1>
-              <button
-                className="show-projects"
-                onClick={() => {
-                  const projectsSection = document.getElementById("projects");
-                  if (projectsSection) {
-                    projectsSection.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
-                Ver proyectos
-              </button>
-            </div>
-
-            <div className="profile-stats">
-              {/* <span><b>15</b> proyectos</span>
-              <span><b>+20</b> tecnologías</span>
-              <span><b>+5</b> años de experiencia</span> */}
-            </div>
-
-            <div className="profile-job">
-              {/* <img
-                className="work-icon"
-                src="https://img.icons8.com/?size=100&id=61522&format=png&color=FFFFFF"
-                alt="work"
-              /> */}
-              <span>Trabajando en: Registro del Mercado de Valores y Mercancías</span>
-            </div>
-            <p className="profile-bio">
-              Desarrollador móvil nativo enfocado en crear experiencias modernas con Android (Jetpack Compose), iOS (SwiftUI) además cuento con experiencia en desarrollo web con React.js y Node.js.
+      <main className="main-container">
+        {/* Hero Section */}
+        <section id="hero" className="hero-section animate-up">
+          <div className="hero-content">
+            <div className="badge">Dinamismo & Precisión</div>
+            <h1 className="hero-title">
+              Osbaldo <span className="text-gradient">Martínez</span>
+            </h1>
+            <p className="hero-subtitle">
+              Desarrollador móvil especializado en <strong>Android (Jetpack Compose)</strong> y <strong>iOS (SwiftUI)</strong>. 
+              Apasionado por crear interfaces que enamoran y código que escala.
             </p>
-            <br />
-            <span>Contacto: 🔗 <a
-              href={`mailto:${emailAddress}`}
-              className='email'
-              title={`Enviar correo a ${emailAddress}`}
-            ><span className='email'><b>osbaldoez@hotmail.com</b></span></a></span>
-          </div>
-        </div>
-
-        <div className="highlights-container">
-          <a href="https://www.linkedin.com/in/osbaldo-martinez-44b1b3165?">
-            <div className="highlight">
-              <img className='social-icon' src="https://img.icons8.com/?size=100&id=ZO0pAGpcWYrB&format=png&color=FFFFFF" alt="LinkedIn" />
-            </div>
-          </a>
-          <a href="https://github.com/Os-devAi">
-            <div className="highlight">
-              <img className='social-icon' src="https://img.icons8.com/?size=100&id=12599&format=png&color=FFFFFF" alt="GitHub" />
-            </div>
-          </a>
-          <a href="https://play.google.com/store/apps/developer?id=Nexus.Dev">
-            <div className="highlight">
-              <img className='social-icon' src="https://img.icons8.com/?size=100&id=sDtU582wAEWd&format=png&color=FFFFFF" alt="Play Store" />
-            </div>
-          </a>
-        </div>
-
-        <div className="profile-content">
-          <h2>Habilidades destacadas</h2>
-          <div className="skills-list">
-            <div className="skill">
-              <h3>Móvil</h3>
-              <p>Kotlin, Jetpack Compose, Swift, SwiftUI</p>
-            </div>
-            <div className="skill">
-              <h3>Web</h3>
-              <p>React, Node.js, PHP, HTML, CSS, JS</p>
-            </div>
-            <div className="skill">
-              <h3>Bases de datos</h3>
-              <p>MySQL, PostgreSQL, Firebase, SQLServer</p>
+            <div className="hero-actions">
+              <button className="btn-primary" onClick={() => scrollTo('projects')}>Ver Proyectos</button>
+              <a href={`mailto:${emailAddress}`} className="btn-secondary">Contacto</a>
             </div>
           </div>
-        </div>
-      </div>
+          
+          <div className="hero-visual">
+            <div className="profile-container">
+              <img
+                className="profile-img"
+                src="https://ik.imagekit.io/nhu6ngxhk/PortafolioImagenes/WhatsApp%20Image%202025-10-01%20at%2008.26.25.jpeg?updatedAt=1759328849905"
+                alt="Osbaldo Martínez"
+              />
+              <div className="profile-blur"></div>
+            </div>
+          </div>
+        </section>
 
-      <div className='project-container' id='projects'>
-        <h2>Proyectos</h2>
-        {proyectos.map((proyectos) => (
-          <ProjectComponent key={proyectos.id} proyectos={proyectos} />
-        ))}
-      </div>
-      <div className="footer">
-        <p>Portafolio desarrollado con React y proyectos cargados a Cloude Firebase Firestore</p>
-      </div>
-    </>
+        {/* Bento Grid Section */}
+        <section id="skills" className="bento-section animate-up" style={{ animationDelay: '0.2s' }}>
+          <div className="bento-grid">
+            {/* About Card */}
+            <div className="bento-card card-large">
+              <div className="card-header">
+                <span className="card-icon">👋</span>
+                <h3>Sobre mí</h3>
+              </div>
+              <p>Desarrollador con experiencia en el ecosistema <strong>Full Stack</strong>, con un enfoque principal en arquitecturas móviles nativas. Actualmente impulsando la digitalización en el RMVM.</p>
+              <div className="social-pills">
+                <a href="https://linkedin.com/in/osbaldo-martinez-44b1b3165" target="_blank" className="social-pill">
+                  <img src="https://img.icons8.com/?size=100&id=ZO0pAGpcWYrB&format=png&color=FFFFFF" alt="LinkedIn" />
+                  LinkedIn
+                </a>
+                <a href="https://github.com/Os-devAi" target="_blank" className="social-pill">
+                  <img src="https://img.icons8.com/?size=100&id=12599&format=png&color=FFFFFF" alt="GitHub" />
+                  GitHub
+                </a>
+                <a href="https://play.google.com/store/apps/developer?id=Nexus.Dev" target="_blank" className="social-pill">
+                  <img src="https://img.icons8.com/?size=100&id=sDtU582wAEWd&format=png&color=FFFFFF" alt="Play Store" />
+                  Play Store
+                </a>
+              </div>
+            </div>
+
+            {/* Mobile Skills Card */}
+            <div className="bento-card">
+              <div className="card-header">
+                <span className="card-icon">📱</span>
+                <h3>Móvil</h3>
+              </div>
+              <ul className="skill-tags">
+                <li>Kotlin</li>
+                <li>Jetpack Compose</li>
+                <li>Swift</li>
+                <li>SwiftUI</li>
+              </ul>
+            </div>
+
+            {/* Web Skills Card */}
+            <div className="bento-card">
+              <div className="card-header">
+                <span className="card-icon">💻</span>
+                <h3>Web</h3>
+              </div>
+              <ul className="skill-tags">
+                <li>React</li>
+                <li>Node.js</li>
+                <li>Full Stack</li>
+              </ul>
+            </div>
+
+            {/* Database Card */}
+            <div className="bento-card">
+              <div className="card-header">
+                <span className="card-icon">🗄️</span>
+                <h3>Bases de Datos</h3>
+              </div>
+              <ul className="skill-tags">
+                <li>PostgreSQL</li>
+                <li>Firebase</li>
+                <li>SQLServer</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="projects-section animate-up" style={{ animationDelay: '0.4s' }}>
+          <div className="section-header">
+            <h2 className="section-title">Proyectos <span className="text-gradient">Destacados</span></h2>
+            <p>Una selección de trabajos que reflejan mi capacidad técnica.</p>
+          </div>
+          <div className="projects-grid">
+            {proyectos.map((proy) => (
+              <ProjectComponent key={proy.id} proyectos={proy} />
+            ))}
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer">
+        <div className="footer-content">
+          <p>© {new Date().getFullYear()} Osbaldo Martínez. Construido con React & Firebase.</p>
+        </div>
+      </footer>
+    </div>
   )
 }
 
